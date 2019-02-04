@@ -1,6 +1,8 @@
 import game_data
+from typing import List, Dict
 
 ROUNDS = 5
+DEFAULT_SAVE_PATH = 'game_state.json'
 
 def get_player_count() -> int:
     player_count = input('How many people are playing? ')
@@ -16,7 +18,7 @@ def get_selection_order(players: List[str], rounds: int) -> List[str]:
     selection_order = []
     
     reverse = False
-    for (i in range(0,rounds)):
+    for i in range(0,rounds):
         if reverse:
             selection_order.append(players.reverse())
             reverse = False
@@ -30,6 +32,13 @@ def get_word(player: str) -> str:
     word = input(player + ' select a word: ')
     return word
 
+def get_save_path() -> str:
+    path = input('File to save game to [Default ' + DEFAULT_SAVE_PATH + ']')
+    if path:
+        return path
+    else:
+        return DEFAULT_SAVE_PATH
+
 def get_words(players: List[str], rounds: int) -> Dict[str, List[str]]:
     words = {}
     
@@ -39,7 +48,7 @@ def get_words(players: List[str], rounds: int) -> Dict[str, List[str]]:
     print('Select your words!')
     
     # Loop through and get all the words from input
-    for (player_selecting in selection_order):
+    for player_selecting in selection_order:
         list_for_player = words[player_selecting]
         word = get_word(player_selecting)
         list_for_player.append(word)
