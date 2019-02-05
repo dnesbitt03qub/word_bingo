@@ -2,6 +2,8 @@
 
 A program to play word bingo by reading in .srt files from TV shows or movies. Each player guesses 5 words and the player who's words appear most often wins!
 
+Note: Currently a project to learn Python on, don't expect it to be robust yet!
+
 ## Creating a game
 
 The program can be run with:
