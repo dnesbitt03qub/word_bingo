@@ -16,14 +16,16 @@ def get_players(player_count: int) -> List[str]:
 # Returns the order of selection from the list of players in snake draft order
 def get_selection_order(players: List[str], rounds: int) -> List[str]:
     selection_order = []
-    
+
     reverse = False
     for i in range(0,rounds):
         if reverse:
-            selection_order.append(players.reverse())
+            for player in reversed(players):
+                selection_order.append(player)
             reverse = False
         else:
-            selection_order.append(players)
+            for player in players:
+                selection_order.append(player)
             reverse = True
     
     return selection_order
