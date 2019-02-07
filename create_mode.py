@@ -43,6 +43,8 @@ def get_save_path() -> str:
 
 def get_words(players: List[str], rounds: int) -> Dict[str, List[str]]:
     words = {}
+    for player in players:
+        words[player] = []
     
     # The list of players names in order of word selection (snake draft)
     selection_order = get_selection_order(players, rounds)
@@ -55,10 +57,15 @@ def get_words(players: List[str], rounds: int) -> Dict[str, List[str]]:
         word = get_word(player_selecting)
         list_for_player.append(word)
         
+    print('Selected words:')
+    for player in words:
+        print(player + ' ' + str(words[player]))
+        
     return words
     
 def save_game_info(player_count: int, players: List[str], words: Dict[str, List[str]], game_file_path: str):
-    game_state = game_data.GameState(player_count, players, words)
+    game_state = game_data.GameState()
+    game_state.set_members(player_count, players, words)
     game_state.save(game_file_path)
 
 # Create the game - define values and save to file

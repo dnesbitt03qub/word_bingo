@@ -11,9 +11,9 @@ class GameState:
     # Load the game state from JSON
     def load_from_file(self, path: str):
         with open(path, 'r') as read_file:
-            self = json.load(read_file)
+            self.__dict__ = json.load(read_file)
         
     # Save the game state to JSON
     def save(self, path: str):
         with open(path, 'w') as write_file:
-            json.dump(self, write_file)
+            json.dump(self.__dict__, write_file)
